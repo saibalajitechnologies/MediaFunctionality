@@ -1,0 +1,626 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\synccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\synccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\scriptbasedrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\scriptbasedrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\services\\audiovideosyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:services\\audiovideosyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\scriptitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\scriptitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\services\\interfaces\\iaudiovideosyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:services\\interfaces\\iaudiovideosyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\commonhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\commonhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\syncmultiplerequest .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\syncmultiplerequest .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lenovo\\Downloads\\response_1763274084113.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\stretchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\stretchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\emailsplitter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\emailsplitter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\speechcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\speechcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\ssmlrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\ssmlrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\audiosplitrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\audiosplitrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\audiosegmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\audiosegmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\filescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\filescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\speechrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\speechrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\videocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\videogenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\videogenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\generatevideocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\generatevideocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\mediamanipulationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\mediamanipulationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\functionalitieswebapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:functionalitieswebapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\mergehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\mergehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\mediamanipulationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\mediamanipulationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\mediacompress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\mediacompress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\ivideogenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\ivideogenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\filehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\filehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\audiovideodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\audiovideodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\timedimagedto2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\timedimagedto2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\timedimageaudiorequest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\timedimageaudiorequest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\helper\\videogenerators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:helper\\videogenerators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\timedimageaudiorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\timedimageaudiorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\videouploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\videouploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\controllers\\mergecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:controllers\\mergecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|e:\\saibalaji projects\\dotnet\\functionalitieswebapi\\functionalitieswebapi\\dto\\uploaddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{82F8DB89-31F6-4273-9CF7-7BD29EC4D027}|FunctionalitiesWebAPI.csproj|solutionrelative:dto\\uploaddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IAudioVideoSyncService.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Services\\Interfaces\\IAudioVideoSyncService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IAudioVideoSyncService.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Services\\Interfaces\\IAudioVideoSyncService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IAudioVideoSyncService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T05:25:48.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AudioVideoSyncService.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Services\\AudioVideoSyncService.cs",
+              "RelativeDocumentMoniker": "Services\\AudioVideoSyncService.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Services\\AudioVideoSyncService.cs",
+              "RelativeToolTip": "Services\\AudioVideoSyncService.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAgwJcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T05:26:33.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SyncController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\SyncController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SyncController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\SyncController.cs",
+              "RelativeToolTip": "Controllers\\SyncController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAgwCsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T05:34:50.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScriptBasedRequest.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\ScriptBasedRequest.cs",
+              "RelativeDocumentMoniker": "DTO\\ScriptBasedRequest.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\ScriptBasedRequest.cs",
+              "RelativeToolTip": "DTO\\ScriptBasedRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T06:13:45.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ScriptItem.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\ScriptItem.cs",
+              "RelativeDocumentMoniker": "Helper\\ScriptItem.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\ScriptItem.cs",
+              "RelativeToolTip": "Helper\\ScriptItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T07:19:36.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CommonHelper.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\CommonHelper.cs",
+              "RelativeDocumentMoniker": "Helper\\CommonHelper.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\CommonHelper.cs",
+              "RelativeToolTip": "Helper\\CommonHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T18:33:05.174Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SyncMultipleRequest .cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\SyncMultipleRequest .cs",
+              "RelativeDocumentMoniker": "DTO\\SyncMultipleRequest .cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\SyncMultipleRequest .cs",
+              "RelativeToolTip": "DTO\\SyncMultipleRequest .cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T06:11:20.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "response_1763274084113.json",
+              "DocumentMoniker": "C:\\Users\\lenovo\\Downloads\\response_1763274084113.json",
+              "ToolTip": "C:\\Users\\lenovo\\Downloads\\response_1763274084113.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-16T06:21:57.604Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T05:25:40.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StretchRequest.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\StretchRequest.cs",
+              "RelativeDocumentMoniker": "DTO\\StretchRequest.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\StretchRequest.cs",
+              "RelativeToolTip": "DTO\\StretchRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T06:15:47.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EmailSplitter.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\EmailSplitter.cs",
+              "RelativeDocumentMoniker": "Helper\\EmailSplitter.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\EmailSplitter.cs",
+              "RelativeToolTip": "Helper\\EmailSplitter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T09:18:24.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SpeechController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\SpeechController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SpeechController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\SpeechController.cs",
+              "RelativeToolTip": "Controllers\\SpeechController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAgwDMAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T20:31:32.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AudioSplitRequest.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\AudioSplitRequest.cs",
+              "RelativeDocumentMoniker": "DTO\\AudioSplitRequest.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\AudioSplitRequest.cs",
+              "RelativeToolTip": "DTO\\AudioSplitRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T20:20:46.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AudioSegmentDto.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\AudioSegmentDto.cs",
+              "RelativeDocumentMoniker": "DTO\\AudioSegmentDto.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\AudioSegmentDto.cs",
+              "RelativeToolTip": "DTO\\AudioSegmentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T20:18:35.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FilesController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\FilesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FilesController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\FilesController.cs",
+              "RelativeToolTip": "Controllers\\FilesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T08:54:07.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-19T17:26:56.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SsmlRequest.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\SsmlRequest.cs",
+              "RelativeDocumentMoniker": "DTO\\SsmlRequest.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\SsmlRequest.cs",
+              "RelativeToolTip": "DTO\\SsmlRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T20:30:58.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SpeechRequest.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\SpeechRequest.cs",
+              "RelativeDocumentMoniker": "DTO\\SpeechRequest.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\SpeechRequest.cs",
+              "RelativeToolTip": "DTO\\SpeechRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T20:42:50.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "GenerateVideoController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\GenerateVideoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GenerateVideoController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\GenerateVideoController.cs",
+              "RelativeToolTip": "Controllers\\GenerateVideoController.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAAAHIAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T17:39:07.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "VideoController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\VideoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\VideoController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\VideoController.cs",
+              "RelativeToolTip": "Controllers\\VideoController.cs",
+              "ViewState": "AgIAALwAAAAAAAAAAAAAwMUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T07:07:42.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "VideoGenerator.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\VideoGenerator.cs",
+              "RelativeDocumentMoniker": "Helper\\VideoGenerator.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\VideoGenerator.cs",
+              "RelativeToolTip": "Helper\\VideoGenerator.cs",
+              "ViewState": "AgIAAMMAAAAAAAAAAAApwM4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T07:06:09.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MediaManipulationController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\MediaManipulationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MediaManipulationController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\MediaManipulationController.cs",
+              "RelativeToolTip": "Controllers\\MediaManipulationController.cs",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAAAMIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T17:07:51.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "FunctionalitiesWebAPI.csproj",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI.csproj",
+              "RelativeDocumentMoniker": "FunctionalitiesWebAPI.csproj",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI.csproj",
+              "RelativeToolTip": "FunctionalitiesWebAPI.csproj",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAwAoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-28T14:25:37.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MergeHelper.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\MergeHelper.cs",
+              "RelativeDocumentMoniker": "Helper\\MergeHelper.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\MergeHelper.cs",
+              "RelativeToolTip": "Helper\\MergeHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T05:26:13.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "MediaManipulationHelper.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\MediaManipulationHelper.cs",
+              "RelativeDocumentMoniker": "Helper\\MediaManipulationHelper.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\MediaManipulationHelper.cs",
+              "RelativeToolTip": "Helper\\MediaManipulationHelper.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAAAF8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T17:40:33.539Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-26T15:50:09.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "IVideoGenerator.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\IVideoGenerator.cs",
+              "RelativeDocumentMoniker": "Helper\\IVideoGenerator.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\IVideoGenerator.cs",
+              "RelativeToolTip": "Helper\\IVideoGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T17:47:28.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "FileHelper.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\FileHelper.cs",
+              "RelativeDocumentMoniker": "Helper\\FileHelper.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\FileHelper.cs",
+              "RelativeToolTip": "Helper\\FileHelper.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T17:12:31.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "MediaCompress.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\MediaCompress.cs",
+              "RelativeDocumentMoniker": "Helper\\MediaCompress.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\MediaCompress.cs",
+              "RelativeToolTip": "Helper\\MediaCompress.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T03:47:27.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "AudioVideoDto.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\AudioVideoDto.cs",
+              "RelativeDocumentMoniker": "DTO\\AudioVideoDto.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\AudioVideoDto.cs",
+              "RelativeToolTip": "DTO\\AudioVideoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T08:04:17.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "MediaController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\MediaController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MediaController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\MediaController.cs",
+              "RelativeToolTip": "Controllers\\MediaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T15:48:50.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "VideoGenerators.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\VideoGenerators.cs",
+              "RelativeDocumentMoniker": "Helper\\VideoGenerators.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Helper\\VideoGenerators.cs",
+              "RelativeToolTip": "Helper\\VideoGenerators.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T17:48:09.735Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "TimedImageDto2.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\TimedImageDto2.cs",
+              "RelativeDocumentMoniker": "DTO\\TimedImageDto2.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\TimedImageDto2.cs",
+              "RelativeToolTip": "DTO\\TimedImageDto2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T18:51:49.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "TimedImageAudioRequest2.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\TimedImageAudioRequest2.cs",
+              "RelativeDocumentMoniker": "DTO\\TimedImageAudioRequest2.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\TimedImageAudioRequest2.cs",
+              "RelativeToolTip": "DTO\\TimedImageAudioRequest2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T18:51:52.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "TimedImageAudioRequest.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\TimedImageAudioRequest.cs",
+              "RelativeDocumentMoniker": "DTO\\TimedImageAudioRequest.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\TimedImageAudioRequest.cs",
+              "RelativeToolTip": "DTO\\TimedImageAudioRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T19:09:48.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "VideoUploadRequest.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\VideoUploadRequest.cs",
+              "RelativeDocumentMoniker": "DTO\\VideoUploadRequest.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\VideoUploadRequest.cs",
+              "RelativeToolTip": "DTO\\VideoUploadRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T07:45:38.843Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "MergeController.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\MergeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MergeController.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\Controllers\\MergeController.cs",
+              "RelativeToolTip": "Controllers\\MergeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T14:07:11.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UploadDto.cs",
+              "DocumentMoniker": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\UploadDto.cs",
+              "RelativeDocumentMoniker": "DTO\\UploadDto.cs",
+              "ToolTip": "E:\\SaiBalaji Projects\\Dotnet\\FunctionalitiesWebAPI\\FunctionalitiesWebAPI\\DTO\\UploadDto.cs",
+              "RelativeToolTip": "DTO\\UploadDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T17:15:56.1Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
