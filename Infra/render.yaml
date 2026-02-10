@@ -1,7 +1,6 @@
 services:
   - type: web
     name: media-api
-    runtime: dotnet7       # Use dotnet7 (not 'dotnet' or 'dotnet8')
     plan: free
     branch: videorefactor
     buildCommand: dotnet restore && dotnet publish -c Release -o ./publish
