@@ -24,11 +24,9 @@ RUN dotnet publish "FunctionalitiesWebAPI.csproj" -c Release -o /app/publish /p:
 FROM base AS final
 WORKDIR /app
 
-# Copy published files
 COPY --from=publish /app/publish .
 
-# Set environment
-ENV DOTNET_ENVIRONMENT=Production
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS=http://0.0.0.0:$PORT
 
-# Entry point
 ENTRYPOINT ["dotnet", "FunctionalitiesWebAPI.dll"]
