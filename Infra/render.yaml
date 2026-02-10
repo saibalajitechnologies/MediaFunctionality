@@ -5,7 +5,6 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile   # Dockerfile is at repo root
-    port: 5284                     # matches Kestrel HTTP port
     autoDeploy: true
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
