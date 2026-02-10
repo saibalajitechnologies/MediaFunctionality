@@ -1,9 +1,9 @@
-# render.yaml - Blueprint for .NET Core Web API
+# render.yaml - Blueprint for .NET Core Web API on Render
 
 services:
   - type: web
     name: media-api
-    env: dotnet
+    runtime: dotnet8       # Correct runtime for .NET 8
     plan: free
     branch: videorefactor
     buildCommand: dotnet restore && dotnet build --configuration Release
