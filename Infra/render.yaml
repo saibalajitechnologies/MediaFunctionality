@@ -1,0 +1,14 @@
+# render.yaml - Blueprint for .NET Core Web API
+
+services:
+  - type: web
+    name: media-api
+    env: dotnet
+    plan: free
+    branch: videorefactor
+    buildCommand: dotnet restore && dotnet build --configuration Release
+    startCommand: dotnet run --urls "http://0.0.0.0:10000"
+    autoDeploy: true
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
