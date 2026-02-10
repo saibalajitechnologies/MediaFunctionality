@@ -1,75 +1,15 @@
 ﻿using FunctionalitiesWebAPI.DTO;
 using System.Diagnostics;
-using System.Text;
 
 namespace FunctionalitiesWebAPI.Helper
 {
-    public class VideoGenerator
+    public class VideoGenerator : IVideoGenerator
     {
-
-        public void SplitAndKeepAudio(string inputAudio, List<AudioSegmentDto> segments, string outputAudio)
+        private async Task RunFfmpegAsync(string arguments)
         {
-            var ffmpegPath = CommonHelper.GetFfmpegExecutable();
-            var tempFolder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempFolder);
-
-            var segmentFiles = new List<string>();
-
-            // Create each segment
-            int index = 0;
-            foreach (var segment in segments)
+            var startInfo = new ProcessStartInfo
             {
-                var segmentFile = Path.Combine(tempFolder, $"segment_{index}.mp3");
-                var duration = segment.End - segment.Start;
-                var args = $"-y -i \"{inputAudio}\" -ss {segment.Start} -t {duration} -acodec copy \"{segmentFile}\"";
-                RunFfmpegCommandsplit(ffmpegPath, args);
-                segmentFiles.Add(segmentFile);
-                index++;
-            }
-
-            // Create concat list file
-            var listFile = Path.Combine(tempFolder, "concat.txt");
-            File.WriteAllLines(listFile, segmentFiles.Select(f => $"file '{f.Replace("\\", "/")}'"));
-
-            // Merge selected segments back into one audio file
-            var concatArgs = $"-y -f concat -safe 0 -i \"{listFile}\" -c copy \"{outputAudio}\"";
-            RunFfmpegCommandsplit(ffmpegPath, concatArgs);
-
-            Directory.Delete(tempFolder, true);
-        }
-
-        private void RunFfmpegCommandsplit(string ffmpegPath, string args)
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = ffmpegPath,
-                    Arguments = args,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-
-            process.Start();
-            string error = process.StandardError.ReadToEnd();
-            process.WaitForExit();
-
-            if (process.ExitCode != 0)
-                throw new Exception("FFmpeg failed: " + error);
-        }
-
-
-        public void MergeAudioWithVideo(string videoPath, string audioPath, string outputPath)
-        {
-            var ffmpegPath = CommonHelper.GetFfmpegExecutable();
-            // FFmpeg command: replace the video’s existing audio track with the given one
-            var arguments = $"-i \"{videoPath}\" -i \"{audioPath}\" -c:v copy -map 0:v:0 -map 1:a:0 -shortest -y \"{outputPath}\"";
-
-            var processInfo = new ProcessStartInfo
-            {
-                FileName = ffmpegPath,
+                FileName = CommonHelper.GetFfmpegExecutable(),
                 Arguments = arguments,
                 RedirectStandardError = true,
                 RedirectStandardOutput = true,
@@ -77,171 +17,280 @@ namespace FunctionalitiesWebAPI.Helper
                 CreateNoWindow = true
             };
 
-            using (var process = new Process { StartInfo = processInfo })
-            {
-                process.Start();
-                string output = process.StandardError.ReadToEnd();
-                process.WaitForExit();
+            using var process = Process.Start(startInfo);
 
-                if (process.ExitCode != 0)
-                    throw new Exception($"FFmpeg failed: {output}");
-            }
-        }
+            if (process == null)
+                throw new Exception("Failed to start FFmpeg process.");
 
-        public void GenerateVideo(string imagePath, string audioPath, string outputPath)
-        {
-            var ffmpegPath = CommonHelper.GetFfmpegExecutable();
+            var error = await process.StandardError.ReadToEndAsync();
+            var output = await process.StandardOutput.ReadToEndAsync();
 
-            var args = $"-y -loop 1 -i \"{imagePath}\" -i \"{audioPath}\" -c:v libx264 -c:a aac -b:a 192k -shortest -pix_fmt yuv420p \"{outputPath}\"";
-
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = ffmpegPath,
-                    Arguments = args,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-
-            process.Start();
-
-            // Read only error output (ffmpeg writes everything here)
-            string error = process.StandardError.ReadToEnd();
-
-            process.WaitForExit();
+            await process.WaitForExitAsync();
 
             if (process.ExitCode != 0)
             {
-                throw new Exception("FFmpeg failed: " + error);
+                throw new Exception($"FFmpeg failed.\n{error}\n{output}");
             }
         }
 
-        public void GenerateVideoFromAudio(string videoPath, string audioPath, string outputPath)
+        public async Task GenerateVideoAsync(string imagePath, string audioPath, string outputVideoPath)
         {
-            var ffmpegPath = CommonHelper.GetFfmpegExecutable();
-            var ffprobePath = CommonHelper.GetFfprobeExecutable();
+            var args =
+                $"-loop 1 -i \"{imagePath}\" -i \"{audioPath}\" " +
+                $"-c:v libx264 -tune stillimage -c:a aac -b:a 192k " +
+                $"-pix_fmt yuv420p -shortest \"{outputVideoPath}\"";
 
-            // Get video duration
-            var videoDuration = GetMediaDuration(ffprobePath, videoPath);
-            var audioDuration = GetMediaDuration(ffprobePath, audioPath);
+            await RunFfmpegAsync(args);
+        }
 
-            var extensionDuration = audioDuration - videoDuration;
+        public async Task GenerateVideoFromAudioAsync(string videoPath, string audioPath, string outputVideoPath)
+        {
+            var args =
+                $"-i \"{videoPath}\" -i \"{audioPath}\" " +
+                $"-c:v copy -map 0:v:0 -map 1:a:0 -shortest \"{outputVideoPath}\"";
 
-            string args;
+            await RunFfmpegAsync(args);
+        }
 
-            if (extensionDuration > 0)
+        public async Task MergeAudioWithVideoAsync(string videoPath, string audioPath, string outputVideoPath)
+        {
+            var args =
+                $"-i \"{videoPath}\" -i \"{audioPath}\" " +
+                $"-c:v copy -c:a aac -shortest \"{outputVideoPath}\"";
+
+            await RunFfmpegAsync(args);
+        }
+
+        public async Task ExtractAudioFromVideoAsync(string videoPath, string outputAudioPath)
+        {
+            var args =
+                $"-i \"{videoPath}\" -vn -acodec aac \"{outputAudioPath}\"";
+
+            await RunFfmpegAsync(args);
+        }
+
+        public async Task CutVideoAsync(string inputPath, string startTime, string endTime, string outputPath)
+        {
+            var args =
+                $"-i \"{inputPath}\" -ss {startTime} -to {endTime} -c copy \"{outputPath}\"";
+
+            await RunFfmpegAsync(args);
+        }
+
+        // You can add these later as per your previous methods
+        public async Task GenerateTimedImageVideoAsync(
+    List<(string imagePath, int duration)> segments,
+    string audioPath,
+    string outputVideoPath)
+        {
+            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
+
+            var inputListPath = Path.Combine(tempDir, "input.txt");
+            var videoSegments = new List<string>();
+
+            try
             {
-                // Extend video using tpad (freeze last frame)
-                args = $"-y -i \"{videoPath}\" -i \"{audioPath}\" " +
-                       $"-filter_complex \"[0:v]tpad=stop_mode=clone:stop_duration={extensionDuration:F2}[v]\" " +
-                       "-map \"[v]\" -map 1:a -c:v libx264 -c:a aac -shortest -pix_fmt yuv420p " +
-                       $"\"{outputPath}\"";
-            }
-            else
-            {
-                // Audio is shorter or equal, no need to pad
-                args = $"-y -i \"{videoPath}\" -i \"{audioPath}\" -map 0:v:0 -map 1:a:0 -c:v libx264 -c:a aac -shortest -pix_fmt yuv420p " +
-                       $"\"{outputPath}\"";
-            }
+                int index = 0;
 
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
+                foreach (var (imagePath, duration) in segments)
                 {
-                    FileName = ffmpegPath,
-                    Arguments = args,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
+                    var segmentPath = Path.Combine(tempDir, $"segment_{index}.mp4");
+
+                    var ffmpegArgs =
+                        $"-loop 1 -i \"{imagePath}\" -t {duration} " +
+                        $"-vf scale=1280:720 -c:v libx264 -preset fast -crf 18 " +
+                        $"-pix_fmt yuv420p -y \"{segmentPath}\"";
+
+                    await RunFfmpegAsync(ffmpegArgs);
+
+                    videoSegments.Add(segmentPath);
+                    index++;
                 }
+
+                await File.WriteAllLinesAsync(inputListPath, videoSegments.Select(v => $"file '{v}'"));
+
+                var concatOutputPath = Path.Combine(tempDir, "combined.mp4");
+
+                var concatArgs =
+                    $"-f concat -safe 0 -i \"{inputListPath}\" -c copy -y \"{concatOutputPath}\"";
+
+                await RunFfmpegAsync(concatArgs);
+
+                var finalArgs =
+                    $"-i \"{concatOutputPath}\" -i \"{audioPath}\" " +
+                    $"-c:v copy -c:a aac -shortest -y \"{outputVideoPath}\"";
+
+                await RunFfmpegAsync(finalArgs);
+            }
+            finally
+            {
+                try { Directory.Delete(tempDir, true); } catch { }
+            }
+        }
+
+
+        public async Task SplitAndKeepAudioAsync(
+    string audioPath,
+    List<AudioSegmentDto> segments,
+    string outputPath)
+        {
+            if (segments == null || segments.Count == 0)
+                throw new Exception("Segments are required.");
+
+            var tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDir);
+
+            var listFile = Path.Combine(tempDir, "list.txt");
+            var outputSegments = new List<string>();
+
+            try
+            {
+                for (int i = 0; i < segments.Count; i++)
+                {
+                    var seg = segments[i];
+
+                    var partPath = Path.Combine(tempDir, $"part_{i}.mp3");
+
+                    // Using -ss and -to (copy mode not reliable for mp3 always)
+                    var args =
+                        $"-i \"{audioPath}\" -ss {seg.Start} -to {seg.End} " +
+                        $"-c:a libmp3lame -y \"{partPath}\"";
+
+                    await RunFfmpegAsync(args);
+
+                    outputSegments.Add(partPath);
+                }
+
+                await File.WriteAllLinesAsync(listFile, outputSegments.Select(x => $"file '{x}'"));
+
+                var concatArgs =
+                    $"-f concat -safe 0 -i \"{listFile}\" -c copy -y \"{outputPath}\"";
+
+                await RunFfmpegAsync(concatArgs);
+            }
+            finally
+            {
+                try { Directory.Delete(tempDir, true); } catch { }
+            }
+        }
+
+        public async Task GenerateTimedImageVideoWithTransitionsAsync(
+    List<(string imagePath, int duration, string transition, double transitionDuration)> segments,
+    string audioPath,
+    string outputVideoPath)
+        {
+            if (segments == null || segments.Count == 0)
+                throw new Exception("At least 1 image segment is required.");
+
+            if (string.IsNullOrWhiteSpace(audioPath))
+                throw new Exception("Audio path is required.");
+
+            // 1) Build ffmpeg input arguments
+            // Each image becomes a looping video for given duration
+            var inputArgs = new List<string>();
+
+            for (int i = 0; i < segments.Count; i++)
+            {
+                inputArgs.Add($"-loop 1 -t {segments[i].duration} -i \"{segments[i].imagePath}\"");
+            }
+
+            // Add audio at the end
+            inputArgs.Add($"-i \"{audioPath}\"");
+
+            // 2) Build filter_complex
+            var filter = new List<string>();
+
+            // Normalize each image stream: scale, fps, format, reset timestamps
+            for (int i = 0; i < segments.Count; i++)
+            {
+                filter.Add(
+                    $"[{i}:v]scale=1280:720,fps=30,format=yuv420p,setpts=PTS-STARTPTS[v{i}]"
+                );
+            }
+
+            // 3) Build xfade chain
+            // Correct offset formula:
+            // offset for transition i = sum(previous durations) - sum(previous transition durations)
+            // But easiest is incremental tracking
+
+            string lastStream = $"[v0]";
+            double offset = segments[0].duration; // end of first segment
+
+            for (int i = 1; i < segments.Count; i++)
+            {
+                var transition = string.IsNullOrWhiteSpace(segments[i].transition)
+                    ? "fade"
+                    : segments[i].transition;
+
+                var transDur = segments[i].transitionDuration;
+
+                // Transition must start BEFORE previous ends
+                // So transition begins at: (current offset - transDur)
+                var transitionStart = offset - transDur;
+
+                var outStream = $"[vxf{i}]";
+
+                filter.Add(
+                    $"{lastStream}[v{i}]xfade=transition={transition}:duration={transDur}:offset={transitionStart}{outStream}"
+                );
+
+                lastStream = outStream;
+
+                // Update offset for next segment end:
+                // We add current segment duration, but overlap transition duration
+                offset = transitionStart + segments[i].duration;
+            }
+
+            // 4) Build final args
+            var args =
+                    $"{string.Join(" ", inputArgs)} " +
+                    $"-filter_complex \"{string.Join(";", filter)}\" " +
+                    $"-map \"{lastStream}\" -map {segments.Count}:a:0 " +
+                    $"-c:v libx264 -preset fast -crf 18 " +
+                    $"-c:a aac -b:a 192k " +
+                    $"-pix_fmt yuv420p -shortest -y \"{outputVideoPath}\"";
+
+            try
+            {
+                await RunFfmpegAsyncduel(args);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(
+                    "FFmpeg failed.\n\nArgs:\n" + args + "\n\nError:\n" + ex.Message,
+                    ex
+                );
+            }
+        }
+
+        private async Task RunFfmpegAsyncduel(string arguments)
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "ffmpeg",
+                Arguments = arguments,
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
             };
 
+            using var process = new Process { StartInfo = startInfo };
+
             process.Start();
-            string error = process.StandardError.ReadToEnd();
-            process.WaitForExit();
+
+            string stderr = await process.StandardError.ReadToEndAsync();
+            string stdout = await process.StandardOutput.ReadToEndAsync();
+
+            await process.WaitForExitAsync();
 
             if (process.ExitCode != 0)
             {
-                throw new Exception("FFmpeg failed: " + error);
+                throw new Exception($"FFmpeg failed.\n\nARGS:\n{arguments}\n\nSTDERR:\n{stderr}\n\nSTDOUT:\n{stdout}");
             }
         }
 
-        private double GetMediaDuration(string ffprobePath, string filePath)
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = ffprobePath,
-                    Arguments = $"-v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{filePath}\"",
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-
-            return double.TryParse(output.Trim(), out double duration) ? duration : 0;
-        }
-
-        public void GenerateTimedImageVideo(List<(string imagePath, int duration)> imageSegments, string audioPath, string outputPath)
-        {
-            var ffmpegPath = CommonHelper.GetFfmpegExecutable();
-            var tempFolder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempFolder);
-            var videoListFile = Path.Combine(tempFolder, "file-list.txt");
-            var sb = new StringBuilder();
-
-            int index = 0;
-            foreach (var segment in imageSegments)
-            {
-                var segmentPath = Path.Combine(tempFolder, $"segment{index}.mp4");
-                var args = $"-loop 1 -t {segment.duration} -i \"{segment.imagePath}\" " +
-                           $"-vf \"scale=1280:720\" -c:v libx264 -pix_fmt yuv420p -r 25 \"{segmentPath}\"";
-
-                RunFfmpegCommand(ffmpegPath, args);
-                sb.AppendLine($"file '{segmentPath.Replace("\\", "/")}'");
-                index++;
-            }
-
-            var listFilePath = Path.Combine(tempFolder, "file-list.txt");
-            File.WriteAllText(listFilePath, sb.ToString());
-
-            var mergedVideoPath = Path.Combine(tempFolder, "merged_video.mp4");
-            RunFfmpegCommand(ffmpegPath, $"-f concat -safe 0 -i \"{listFilePath}\" -c copy \"{mergedVideoPath}\"");
-
-            RunFfmpegCommand(ffmpegPath, $"-i \"{mergedVideoPath}\" -i \"{audioPath}\" -c:v copy -c:a aac -shortest \"{outputPath}\"");
-
-            Directory.Delete(tempFolder, true);
-        }
-
-        private void RunFfmpegCommand(string ffmpegPath, string args)
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = ffmpegPath,
-                    Arguments = args,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-
-            process.Start();
-            string error = process.StandardError.ReadToEnd();
-            process.WaitForExit();
-
-            if (process.ExitCode != 0)
-                throw new Exception("FFmpeg failed: " + error);
-        }
 
     }
 }
