@@ -2,7 +2,7 @@ services:
   - type: web
     name: media-api
     plan: free
-    branch: branch           # The branch containing your code
+    branch: main            # Your branch name with the API code
     buildCommand: dotnet restore && dotnet publish -c Release -o ./publish
     startCommand: dotnet ./publish/FunctionalitiesWebAPI.dll
     autoDeploy: true
