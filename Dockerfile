@@ -1,0 +1,35 @@
+# Stage 1: Base runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 5284
+
+# Stage 2: Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy csproj and restore dependencies
+COPY ["FunctionalitiesWebAPI.csproj", "./"]
+RUN dotnet restore "FunctionalitiesWebAPI.csproj"
+
+# Copy everything else
+COPY . .
+
+# Build
+RUN dotnet build "FunctionalitiesWebAPI.csproj" -c Release -o /app/build
+
+# Stage 3: Publish
+FROM build AS publish
+RUN dotnet publish "FunctionalitiesWebAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Stage 4: Final image
+FROM base AS final
+WORKDIR /app
+
+# Copy published files
+COPY --from=publish /app/publish .
+
+# Set environment
+ENV DOTNET_ENVIRONMENT=Production
+
+# Entry point
+ENTRYPOINT ["dotnet", "FunctionalitiesWebAPI.dll"]
