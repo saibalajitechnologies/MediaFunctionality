@@ -1,11 +1,18 @@
+# render.yaml
 services:
   - type: web
-    name: media-api
+    name: FunctionalitiesWebAPI
+    env: docker
     plan: free
-    branch: main            # Your branch name with the API code
-    buildCommand: dotnet restore && dotnet publish -c Release -o ./publish
-    startCommand: dotnet ./publish/FunctionalitiesWebAPI.dll
-    autoDeploy: true
+    # Optional: Render automatically builds your Dockerfile
+    dockerfilePath: ./WebApi/Dockerfile
+    # Port exposed in Dockerfile (5284 for HTTP)
+    port: 5284
+    # Optional: environment variables
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
+      - key: DOTNET_USE_POLLING_FILE_WATCHER
+        value: "1"
+    # Auto-deploy on every Git push
+    autoDeploy: true
