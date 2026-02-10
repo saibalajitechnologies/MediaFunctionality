@@ -1,6 +1,5 @@
 ﻿using FunctionalitiesWebAPI.DTO;
 using FunctionalitiesWebAPI.Helper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Xabe.FFmpeg;
 
@@ -23,7 +22,7 @@ namespace FunctionalitiesWebAPI.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> CompressVideos([FromForm] UploadDto upload)
         {
-            var allowedVideoTypes = new[] { "video/mp4", "video/x-m4v", "video/webm", "video/x-msvideo", "video/x-ms-wmv", "video/quicktime"};
+            var allowedVideoTypes = new[] { "video/mp4", "video/x-m4v", "video/webm", "video/x-msvideo", "video/x-ms-wmv", "video/quicktime" };
             if (FileHelper.ValidateFile(upload?.File, 100 * 1024 * 1024, "Video", allowedVideoTypes) is IActionResult error)
                 return error;
 
@@ -32,9 +31,9 @@ namespace FunctionalitiesWebAPI.Controllers
 
             try
             {
-                await FileHelper.SaveFileAsync(upload.File, inputPath);                
+                await FileHelper.SaveFileAsync(upload.File, inputPath);
                 await MediaManipulationHelper.CompressMediaVideo(inputPath, outputPath);
-                
+
                 var fileBytes = await FileHelper.ReadFileAsBytesAsync(outputPath);
                 return File(fileBytes, "video/mp4", "compressed.mp4");
             }

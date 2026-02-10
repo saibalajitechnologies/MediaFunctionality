@@ -1,10 +1,8 @@
 ﻿using FunctionalitiesWebAPI.DTO;
 using FunctionalitiesWebAPI.Helper;
 using FunctionalitiesWebAPI.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Text.Json;
 
 namespace FunctionalitiesWebAPI.Controllers
 {

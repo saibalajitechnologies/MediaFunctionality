@@ -1,4 +1,5 @@
 using FunctionalitiesWebAPI.Helper;
+using FunctionalitiesWebAPI.Middlewares;
 using FunctionalitiesWebAPI.Processing;
 using FunctionalitiesWebAPI.Services;
 using FunctionalitiesWebAPI.Services.Interfaces;
@@ -28,13 +29,23 @@ builder.Services.AddHangfireServer();
 // Increase upload limit if needed
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+    options.MultipartBodyLengthLimit = 500 * 1024 * 1024; // 100 MB
 });
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 500 * 1024 * 1024; // 500 MB
+});
+
 
 builder.Services.AddScoped<IAudioVideoSyncService, AudioVideoSyncService>();
 builder.Services.AddScoped<IFFmpegProcessor, FFmpegProcessor>();
 
-builder.Services.AddScoped<IVideoGenerator, VideoGenerators>();
+//builder.Services.AddScoped<IVideoGenerator, VideoGenerators>();
+
+builder.Services.AddScoped<IVideoService, VideoService>();
+builder.Services.AddScoped<IVideoGenerator, VideoGenerator>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -85,6 +96,8 @@ app.UseStaticFiles(); //yyyyyyyyServe video from wwwroot/media
 app.UseCors("AllowAll");
 
 app.UseRouting();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseAuthorization();
 

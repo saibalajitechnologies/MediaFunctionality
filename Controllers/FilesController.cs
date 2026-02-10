@@ -1,5 +1,4 @@
 ﻿using FunctionalitiesWebAPI.Helper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionalitiesWebAPI.Controllers
