@@ -1,13 +1,10 @@
-# render.yaml
 services:
   - type: web
     name: FunctionalitiesWebAPI
     env: docker
     plan: free
-    dockerfilePath: ./Dockerfile   # Dockerfile is at repo root
+    dockerfilePath: ./Dockerfile
     autoDeploy: true
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
-      - key: DOTNET_USE_POLLING_FILE_WATCHER
-        value: "1"
