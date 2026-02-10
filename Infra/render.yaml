@@ -4,15 +4,11 @@ services:
     name: FunctionalitiesWebAPI
     env: docker
     plan: free
-    # Optional: Render automatically builds your Dockerfile
-    dockerfilePath: ./WebApi/Dockerfile
-    # Port exposed in Dockerfile (5284 for HTTP)
-    port: 5284
-    # Optional: environment variables
+    dockerfilePath: ./Dockerfile   # Dockerfile is at repo root
+    port: 5284                     # matches Kestrel HTTP port
+    autoDeploy: true
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
       - key: DOTNET_USE_POLLING_FILE_WATCHER
         value: "1"
-    # Auto-deploy on every Git push
-    autoDeploy: true
