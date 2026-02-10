@@ -4,6 +4,8 @@
 # Build results
 bin/
 obj/
+publish/
+wwwroot/
 
 # User-specific files
 *.user
