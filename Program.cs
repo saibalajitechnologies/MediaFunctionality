@@ -4,12 +4,11 @@ using FunctionalitiesWebAPI.Processing;
 using FunctionalitiesWebAPI.Services;
 using FunctionalitiesWebAPI.Services.Interfaces;
 using Hangfire;
-using Hangfire.MemoryStorage; // Required for UseInMemoryStorage
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
@@ -25,27 +24,27 @@ builder.Services.AddCors(options =>
 builder.Services.AddHangfire(x => x.UseMemoryStorage());
 builder.Services.AddHangfireServer();
 
-
-// Increase upload limit if needed
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 500 * 1024 * 1024; // 100 MB
+    options.MultipartBodyLengthLimit = 500 * 1024 * 1024;
 });
 
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.Limits.MaxRequestBodySize = 500 * 1024 * 1024; // 500 MB
+    options.Limits.MaxRequestBodySize = 500 * 1024 * 1024;
 });
 
+// ✅ Render Port Fix
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5284";
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(int.Parse(port));
+});
 
 builder.Services.AddScoped<IAudioVideoSyncService, AudioVideoSyncService>();
 builder.Services.AddScoped<IFFmpegProcessor, FFmpegProcessor>();
-
-//builder.Services.AddScoped<IVideoGenerator, VideoGenerators>();
-
 builder.Services.AddScoped<IVideoService, VideoService>();
 builder.Services.AddScoped<IVideoGenerator, VideoGenerator>();
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -55,43 +54,20 @@ builder.Services.AddSwaggerGen(c =>
         Title = "FunctionalitiesWebAPI",
         Version = "v1"
     });
-
-    // Force Swagger 2.0 spec (not recommended, just for troubleshooting)
-    //c.SerializeAsV2 = true;
-
-    //c.EnableAnnotations();
-});
-
-
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.ListenAnyIP(5284); // HTTP
-    serverOptions.ListenAnyIP(7219, listenOptions =>
-    {
-        listenOptions.UseHttps();
-    });
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// ✅ Enable Swagger on Render (Production also)
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseDeveloperExceptionPage(); // Show detailed errors
-    //app.UseSwagger();
-    //app.UseSwaggerUI();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "FunctionalitiesWebAPI v1");
-    });
-
-}
-
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "FunctionalitiesWebAPI v1");
+});
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(); //yyyyyyyyServe video from wwwroot/media
+app.UseStaticFiles();
 
 app.UseCors("AllowAll");
 
