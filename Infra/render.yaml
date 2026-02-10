@@ -1,13 +1,11 @@
-# render.yaml - Blueprint for .NET Core Web API on Render
-
 services:
   - type: web
     name: media-api
-    runtime: dotnet8       # Correct runtime for .NET 8
+    runtime: dotnet7       # Use dotnet7 (not 'dotnet' or 'dotnet8')
     plan: free
     branch: videorefactor
-    buildCommand: dotnet restore && dotnet build --configuration Release
-    startCommand: dotnet run --urls "http://0.0.0.0:10000"
+    buildCommand: dotnet restore && dotnet publish -c Release -o ./publish
+    startCommand: dotnet ./publish/FunctionalitiesWebAPI.dll
     autoDeploy: true
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
