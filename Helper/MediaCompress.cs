@@ -1,10 +1,7 @@
 ﻿using SkiaSharp;
-using System;
 using System.Diagnostics;
-using System.IO;
 using System.Text;
 using Xabe.FFmpeg;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace FunctionalitiesWebAPI.Helper
 {

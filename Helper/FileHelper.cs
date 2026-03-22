@@ -45,7 +45,7 @@ namespace FunctionalitiesWebAPI.Helper
         //    return null;
         //}
 
-        public static IActionResult ValidateFile(IFormFile file, long maxSizeBytes, string label = "File", string[] allowedMimeTypes = null)
+        public static IActionResult? ValidateFile(IFormFile file, long maxSizeBytes, string label = "File", string[]? allowedMimeTypes = null)
         {
             List<string> errors = new();
 
@@ -67,7 +67,7 @@ namespace FunctionalitiesWebAPI.Helper
         }
 
 
-        public static IActionResult ValidateFileCount(List<IFormFile> files, int minCount, string label)
+        public static IActionResult? ValidateFileCount(List<IFormFile> files, int minCount, string label)
         {
             if (files == null || files.Count < minCount)
                 return new BadRequestObjectResult($"Please upload at least {minCount} {label.ToLower()}.");

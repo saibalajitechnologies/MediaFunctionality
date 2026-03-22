@@ -1,8 +1,6 @@
-﻿using Azure.Core;
-using FunctionalitiesWebAPI.DTO;
+﻿using FunctionalitiesWebAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CognitiveServices.Speech;
-using System.Diagnostics;
 using System.Net.Http.Headers;
 
 
@@ -86,7 +84,7 @@ namespace FunctionalitiesWebAPI.Controllers
             };
 
             var response = await client.PostAsJsonAsync("https://api.openai.com/v1/audio/speech", body);
-                       
+
 
             if (!response.IsSuccessStatusCode)
                 return StatusCode((int)response.StatusCode, await response.Content.ReadAsStringAsync());

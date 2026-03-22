@@ -1,6 +1,4 @@
-﻿using FunctionalitiesWebAPI.Helper;
-
-namespace FunctionalitiesWebAPI.DTO
+﻿namespace FunctionalitiesWebAPI.DTO
 {
     public class ScriptBasedRequest
     {

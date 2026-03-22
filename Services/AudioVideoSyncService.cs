@@ -1,8 +1,5 @@
 ﻿using FunctionalitiesWebAPI.Helper;
 using FunctionalitiesWebAPI.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using System.Diagnostics;
-using System.Text.Json;
 
 namespace FunctionalitiesWebAPI.Services
 {
@@ -78,7 +75,7 @@ namespace FunctionalitiesWebAPI.Services
 
             // fallback if parsing fails
             return 0;
-        }       
+        }
 
 
 

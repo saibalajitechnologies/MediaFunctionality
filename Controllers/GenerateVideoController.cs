@@ -1,6 +1,5 @@
 ﻿using FunctionalitiesWebAPI.DTO;
 using FunctionalitiesWebAPI.Helper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionalitiesWebAPI.Controllers
@@ -88,7 +87,7 @@ namespace FunctionalitiesWebAPI.Controllers
             if (durations == null || durations.Count != form.Images.Count)
                 return BadRequest("Durations count must match images count.");
 
-        
+
             var mediaPath = Path.Combine(_env.WebRootPath ?? "wwwroot", "media");
             Directory.CreateDirectory(mediaPath);
 
