@@ -69,6 +69,19 @@ namespace FunctionalitiesWebAPI.Helper
             await RunFfmpegAsync(args);
         }
 
+        public async Task CutVideoAsyncaccurate(string inputPath, string startTime, string endTime, string outputPath)
+        {
+            string args;
+            args =
+                $"-ss {startTime} -to {endTime} -i \"{inputPath}\" " +
+                "-c:v libx264 -preset veryfast -crf 23 " +
+                "-c:a aac -b:a 128k " +
+                $"\"{outputPath}\"";
+
+            await RunFfmpegAsync(args);
+        }
+
+
         public async Task CutVideoAsync(string inputPath, string startTime, string endTime, string outputPath)
         {
             var args =
@@ -264,6 +277,62 @@ namespace FunctionalitiesWebAPI.Helper
             }
         }
 
+        public async Task GenerateVideoFromImageWithTransitions(List<(string imagePath, int duration, string transition, double transitionDuration)> segments,
+    string outputVideoPath)
+        {
+            if (segments == null || segments.Count == 0)
+                throw new Exception("At least 1 image segment is required.");
+
+            var inputArgs = new List<string>();
+
+            for (int i = 0; i < segments.Count; i++)
+            {
+                inputArgs.Add($"-loop 1 -t {segments[i].duration} -i \"{segments[i].imagePath}\"");
+            }
+
+            var filter = new List<string>();
+
+            for (int i = 0; i < segments.Count; i++)
+            {
+                filter.Add($"[{i}:v]scale=1280:720,fps=30,format=yuv420p[v{i}]");
+            }
+
+            double offset = segments[0].duration;
+            string lastStream = "[v0]";
+
+            for (int i = 1; i < segments.Count; i++)
+            {
+                var transition = string.IsNullOrWhiteSpace(segments[i].transition)
+                    ? "fade"
+                    : segments[i].transition.ToLower();
+
+                var transDur = segments[i].transitionDuration;
+
+                offset -= transDur;
+
+                var outStream = $"[vxf{i}]";
+
+                filter.Add(
+                    $"{lastStream}[v{i}]xfade=transition={transition}:duration={transDur}:offset={offset}{outStream}"
+                );
+
+                lastStream = outStream;
+                offset += segments[i].duration;
+            }
+
+            var args =
+                $"{string.Join(" ", inputArgs)} " +
+                $"-filter_complex \"{string.Join(";", filter)}\" " +
+                $"-map \"{lastStream}\" " +
+                "-c:v libx264 -preset fast -crf 18 " +
+                "-pix_fmt yuv420p -y " +
+                $"\"{outputVideoPath}\"";
+
+            await RunFfmpegAsyncduel(args);
+        }
+
+
+
         private async Task RunFfmpegAsyncduel(string arguments)
         {
             var startInfo = new ProcessStartInfo
@@ -291,6 +360,62 @@ namespace FunctionalitiesWebAPI.Helper
             }
         }
 
+        public async Task GenerateSingleImageVideoAsync(
+    string imagePath,
+    int duration,
+    string outputVideoPath)
+        {
+            var args =
+                $"-loop 1 -i \"{imagePath}\" " +
+                $"-t {duration} " +
+                $"-c:v libx264 -tune stillimage " +
+                $"-pix_fmt yuv420p " +
+                $"-y \"{outputVideoPath}\"";
 
+            await RunFfmpegAsync(args);
+        }
+
+        public async Task GenerateSingleImageVideoAsyncScalr1234(string imagePath, int duration, string outputPath)
+        {
+            var args =
+                $"-loop 1 -i \"{imagePath}\" -t {duration} " +
+                "-vf scale=1280:720,fps=30,format=yuv420p " +
+                "-c:v libx264 -preset fast -crf 18 " +
+                "-pix_fmt yuv420p -y " +
+                $"\"{outputPath}\"";
+
+            await RunFfmpegAsync(args);
+        }
+
+        public async Task LoopVideoUntilAudioEndsAsync(
+    string videoPath,
+    string audioPath,
+    string outputVideoPath)
+        {
+            var args =
+                $"-stream_loop -1 -i \"{videoPath}\" " +   // Loop video infinitely
+                $"-i \"{audioPath}\" " +                   // Add audio
+                "-map 0:v:0 -map 1:a:0 " +                 // Explicit mapping (important)
+                "-c:v libx264 -preset fast -crf 23 " +     // Re-encode video (required for looping)
+                "-c:a aac -b:a 192k " +                    // Encode audio
+                "-pix_fmt yuv420p " +
+                "-shortest -y " +                          // Stop when audio ends
+                $"\"{outputVideoPath}\"";
+
+            await RunFfmpegAsync(args);
+        }
+
+        public async Task ConvertMpegToMp3Async(string inputPath, string outputPath)
+        {
+            var args =
+                $"-i \"{inputPath}\" " +
+                "-vn " +
+                "-c:a libmp3lame " +
+                "-b:a 192k " +
+                "-y " +
+                $"\"{outputPath}\"";
+
+            await RunFfmpegAsync(args);
+        }
     }
 }

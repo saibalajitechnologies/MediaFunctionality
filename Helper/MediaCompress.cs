@@ -122,7 +122,7 @@ namespace FunctionalitiesWebAPI.Helper
 
             FFmpeg.SetExecutablesPath(ffmpegFolder);
 
-            string directory = Path.GetDirectoryName(inputPath);
+            string directory = Path.GetDirectoryName(inputPath)!;
             if (string.IsNullOrWhiteSpace(directory))
                 throw new ArgumentException("Invalid input path");
 

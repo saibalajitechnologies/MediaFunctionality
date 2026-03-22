@@ -31,6 +31,35 @@ namespace FunctionalitiesWebAPI.Processing
             return output;
         }
 
+        public async Task<string> RunCommandForVideoStretch(string args)
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = ffmpegExe,
+                Arguments = args,
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using var process = new Process { StartInfo = startInfo };
+
+            process.Start();
+
+            // Read BOTH streams in parallel
+            var errorTask = process.StandardError.ReadToEndAsync();
+            var outputTask = process.StandardOutput.ReadToEndAsync();
+
+            await Task.WhenAll(errorTask, outputTask);
+            await process.WaitForExitAsync();
+
+            if (process.ExitCode != 0)
+                throw new Exception($"FFmpeg failed: {errorTask.Result}");
+
+            return errorTask.Result;
+        }
+
         public async Task<string> RunCommandWithOutput(string args)
         {
             var process = new Process

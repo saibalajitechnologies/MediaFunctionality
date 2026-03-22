@@ -16,5 +16,11 @@ namespace FunctionalitiesWebAPI.Services
         Task<string> GenerateFromTimedImages(TimedImageAudioRequest request);
         Task<string> SplitAndKeepAudio(AudioSplitRequest request);
         Task<string> GenerateImageTranstion(ImageTransitionRequest request);
+        Task<string> GenerateImageTransitionWithoutAudio(ImageTransitionOnlyRequest request);
+        Task<string> GenerateSingleImageVideo(SimpleImageVideoRequest request);
+
+        Task<string> LoopVideoWithAudio(AudioVideoDto request);
+
+        Task<string> ConvertMpegToMp3(FileUploadDto request);
     }
 }

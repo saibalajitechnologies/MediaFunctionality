@@ -14,9 +14,12 @@ namespace FunctionalitiesWebAPI.Services
 
         private string EnsureFolder(string subFolder)
         {
-            string folder = Path.Combine(AppContext.BaseDirectory, subFolder);
-            Directory.CreateDirectory(folder);
-            return folder;
+            string path = Path.Combine(Directory.GetCurrentDirectory(), subFolder);
+
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            return path;
         }
 
         // -----------------------------------------------------------------------
@@ -105,6 +108,89 @@ namespace FunctionalitiesWebAPI.Services
                 $"-i \"{audioPath}\" -i \"{videoPath}\" -filter_complex \"[0:a]apad,aresample=async=1[a]\" -map 1:v -map \"[a]\" -c:v copy -shortest \"{outputFile}\"";
 
             await _ffmpeg.RunCommand(ffmpegArgs);
+
+            return outputFile;
+        }
+
+        // -----------------------------------------------------------------------
+        // STRETCH VIDEO TO MATCH AUDIO LENGTH
+        // -----------------------------------------------------------------------
+
+        public async Task<string> StretchVideoToMatchAudio(IFormFile audio, IFormFile video)
+        {
+            string uploadFolder = EnsureFolder("uploads");
+            string outputFolder = EnsureFolder("outputs");
+
+            string audioPath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}.m4a");
+            string videoPath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}.mp4");
+            string outputPath = Path.Combine(outputFolder, $"{Guid.NewGuid()}.mp4");
+
+            // Save audio
+            using (var stream = new FileStream(audioPath, FileMode.Create))
+                await audio.CopyToAsync(stream);
+
+            // Save video
+            using (var stream = new FileStream(videoPath, FileMode.Create))
+                await video.CopyToAsync(stream);
+
+            // FAST VERSION (no video re-encoding)
+            string ffmpegArgs =
+                $"-stream_loop 20 -i \"{videoPath}\" -i \"{audioPath}\" " +
+                $"-map 0:v -map 1:a -c:v copy -c:a aac -shortest \"{outputPath}\"";
+
+            await _ffmpeg.RunCommandForVideoStretch(ffmpegArgs);
+
+            if (!File.Exists(outputPath))
+                throw new Exception("Output file not created.");
+
+            return outputPath;
+        }
+        public async Task<string> StretchVideoToMatchAudiosssss(IFormFile audio, IFormFile video)
+        {
+            string uploadFolder = EnsureFolder("uploads");
+            string outputFolder = EnsureFolder("outputs");
+
+            string audioPath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}.m4a");
+            string videoPath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}.mp4");
+            string outputPath = Path.Combine(outputFolder, $"{Guid.NewGuid()}.mp4");
+
+            using (var stream = new FileStream(audioPath, FileMode.Create))
+                await audio.CopyToAsync(stream);
+
+            using (var stream = new FileStream(videoPath, FileMode.Create))
+                await video.CopyToAsync(stream);
+
+            /*
+            // Save audio
+            string audioPath = Path.Combine(uploadFolder, audio.FileName);
+            using (var stream = new FileStream(audioPath, FileMode.Create))
+                await audio.CopyToAsync(stream);
+
+            // Save video
+            string videoPath = Path.Combine(uploadFolder, video.FileName);
+            using (var stream = new FileStream(videoPath, FileMode.Create))
+                await video.CopyToAsync(stream);
+            */
+
+            // Output
+            string outputFile = Path.Combine(outputFolder, $"stretched_{video.FileName}.mp4");
+
+            // FFmpeg stretch video to match audio duration
+    //        string ffmpegArgs =
+    //$"-stream_loop -1 -i \"{videoPath}\" -i \"{audioPath}\" " +
+    //$"-map 0:v -map 1:a -c:v copy -c:a aac -shortest \"{outputFile}\"";
+
+    //        string ffmpegArgs =
+    //$"-stream_loop -1 -fflags +shortest -i \"{videoPath}\" -i \"{audioPath}\" " +
+    //$"-map 0:v -map 1:a -c:v copy -c:a aac -shortest \"{outputFile}\"";
+
+            string ffmpegArgs =
+    $"-stream_loop 5 -i \"{videoPath}\" -i \"{audioPath}\" " +
+    $"-map 0:v -map 1:a " +
+    $"-c:v libx264 -preset veryfast -pix_fmt yuv420p " +
+    $"-c:a aac -shortest \"{outputFile}\"";
+
+            await _ffmpeg.RunCommandForVideoStretch(ffmpegArgs);
 
             return outputFile;
         }

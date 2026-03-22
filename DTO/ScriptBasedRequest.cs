@@ -1,9 +1,9 @@
-﻿namespace FunctionalitiesWebAPI.DTO
+﻿namespace FunctionalitiesWebAPI.DTO;
+
+#nullable disable
+public class ScriptBasedRequest
 {
-    public class ScriptBasedRequest
-    {
-        public IFormFile Audio { get; set; }
-        public List<string> ScriptJson { get; set; }
-        public List<IFormFile> Videos { get; set; }
-    }
+    public IFormFile Audio { get; set; }
+    public List<string> ScriptJson { get; set; }
+    public List<IFormFile> Videos { get; set; }
 }

@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace FunctionalitiesWebAPI.Helper
 {
-    public class VideoGenerators : IVideoGenerator
+    public class VideoGenerators //: IVideoGenerator
     {
         public async Task GenerateVideoAsync(string imagePath, string audioPath, string outputVideoPath)
         {

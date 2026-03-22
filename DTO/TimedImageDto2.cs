@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FunctionalitiesWebAPI.DTO
+namespace FunctionalitiesWebAPI.DTO;
+
+#nullable disable
+public class TimedImageDto2
 {
-    public class TimedImageDto2
-    {
-        [Required]
-        public List<IFormFile> Images { get; set; }
+    [Required]
+    public List<IFormFile> Images { get; set; }
 
-        [Required]
-        public string Durations { get; set; }
+    [Required]
+    public string Durations { get; set; }
 
-        [Required]
-        //[SwaggerSchema("Audio file in MP3 or WAV format")]
-        public IFormFile Audio { get; set; }
-    }
+    [Required]
+    //[SwaggerSchema("Audio file in MP3 or WAV format")]
+    public IFormFile Audio { get; set; }
 }

@@ -4,22 +4,45 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>5bb08fc1-9acf-4b40-b9fb-8b91b701e5eb</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
+	  <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
+	  <PackageReference Include="Dapper" Version="2.1.72" />
 	  <PackageReference Include="EntityFramework" Version="6.5.1" />
 	  <PackageReference Include="Hangfire" Version="1.8.20" />
 	  <PackageReference Include="Hangfire.MemoryStorage" Version="1.8.1.2" />
+	  <PackageReference Include="itext7" Version="8.0.0" />
+	  <PackageReference Include="Magick.NET.Core" Version="14.10.3" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.25" />
 	  <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.46.0" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.25">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 	  <PackageReference Include="PdfPig" Version="0.1.10" />
+	  <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
 	  <PackageReference Include="SkiaSharp" Version="3.119.0" />
 	  <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />-->
 	  <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
 	  <!--<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="9.0.4" />
 	  <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.5" />-->
-	  <PackageReference Include="Xabe.FFmpeg" Version="6.0.1" />
+	  <PackageReference Include="Xabe.FFmpeg" Version="6.0.2" />
 	  <PackageReference Include="Xceed.Words.NET" Version="5.0.25228.6154" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="outputs\" />
+    <Folder Include="Storage\uploads\" />
+    <Folder Include="uploads\" />
+    <Folder Include="wwwroot\media\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

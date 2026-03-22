@@ -32,6 +32,13 @@ namespace FunctionalitiesWebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPost("stretch-Video")]
+        public async Task<IActionResult> StretchVideoLoopForAudio([FromForm] StretchRequest request)//([FromForm] IFormFile audio, [FromForm] IFormFile video)
+        {
+            var result = await _service.StretchVideoToMatchAudio(request.Audio, request.Video);
+            return Ok(result);
+        }
+
         [HttpPost("script-based")]
         public async Task<IActionResult> ScriptBased([FromForm] ScriptBasedRequest request)
         {

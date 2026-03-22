@@ -1,6 +1,7 @@
 ﻿using FunctionalitiesWebAPI.DTO;
 using FunctionalitiesWebAPI.Exceptions;
 using FunctionalitiesWebAPI.Helper;
+using Newtonsoft.Json;
 using System.Text.Json;
 
 namespace FunctionalitiesWebAPI.Services
@@ -25,13 +26,18 @@ namespace FunctionalitiesWebAPI.Services
 
         private static readonly HashSet<string> AllowedAudioExtensions = new(StringComparer.OrdinalIgnoreCase)
         {
-            ".mp3", ".wav", ".m4a", ".aac"
+            ".mp3", ".wav", ".m4a", ".aac", ".mpeg"
         };
 
         private static readonly HashSet<string> AllowedVideoExtensions = new(StringComparer.OrdinalIgnoreCase)
         {
             ".mp4", ".mov", ".mkv", ".webm"
         };
+
+        private static readonly HashSet<string> AllowedMpegExtensions =
+        new() { ".mpeg", ".mpg" };
+
+        
 
 
         public VideoService(
@@ -193,7 +199,22 @@ namespace FunctionalitiesWebAPI.Services
                 var outputFileName = Guid.NewGuid() + ".mp4";
                 var outputPath = Path.Combine(folder, outputFileName);
 
-                await _videoGenerator.CutVideoAsync(inputPath, request.StartTime, request.EndTime, outputPath);
+                // Normalize times
+                var start = NormalizeTime(request.StartTime);
+                var end = NormalizeTime(request.EndTime);
+
+                // Decide mode
+                var accurate = HasMilliseconds(request.StartTime) || HasMilliseconds(request.EndTime);
+
+                if (accurate)
+                {
+                    await _videoGenerator.CutVideoAsyncaccurate(inputPath, start, end, outputPath);
+                }
+                else
+                {
+                    await _videoGenerator.CutVideoAsync(inputPath, start, end, outputPath);
+                }
+                //await _videoGenerator.CutVideoAsync(inputPath, request.StartTime, request.EndTime, outputPath);
 
                 return outputFileName;
             }
@@ -383,6 +404,198 @@ namespace FunctionalitiesWebAPI.Services
             finally
             {
                 SafeDelete(audioPath);
+            }
+        }
+
+        public async Task<string> GenerateImageTransitionWithoutAudio(ImageTransitionOnlyRequest request)
+        {
+            //var metaList = request.Meta
+            //    .Select(m => JsonConvert.DeserializeObject<ImageMeta>(m))
+            //    .ToList();
+
+            if (request == null)
+                throw new MediaValidationException("Request is required.");
+
+            if (request.Meta == null || request.Meta.Count == 0)
+                throw new MediaValidationException("Meta is required.");
+
+            if (request.Images == null || request.Images.Count == 0)
+                throw new MediaValidationException("At least 1 image is required.");
+
+            if (request.Meta.Count != request.Images.Count)
+                throw new MediaValidationException("Meta count must match Images count.");
+
+            var folder = GetMediaFolder();
+
+            var savedImages = new List<string>();
+
+            try
+            {
+                var segments = new List<(string imagePath, int duration, string transition, double transitionDuration)>();
+
+                for (int i = 0; i < request.Images.Count; i++)
+                {
+                    var img = request.Images[i];
+                    var meta = request.Meta[i];
+
+                    ValidateFile(img, AllowedImageExtensions, AllowedMimeTypes["image"], "Image");
+
+                    if (meta.Duration <= 0)
+                        throw new MediaValidationException("Each image duration must be > 0.");
+
+                    if (meta.TransitionDuration < 0 || meta.TransitionDuration > meta.Duration)
+                        throw new MediaValidationException("Transition duration must be <= duration.");
+
+                    var imgPath = await SaveFileAsync(img, folder);
+                    savedImages.Add(imgPath);
+
+                    segments.Add((imgPath, meta.Duration, meta.Transition, meta.TransitionDuration));
+                }
+
+                var outputFileName = Guid.NewGuid() + ".mp4";
+                var outputVideoPath = Path.Combine(folder, outputFileName);
+
+                await _videoGenerator.GenerateVideoFromImageWithTransitions(
+                    segments,
+                    outputVideoPath
+                );
+
+                return outputFileName;
+            }
+            finally
+            {
+                foreach (var img in savedImages)
+                    SafeDelete(img);
+            }
+        }
+
+        private string NormalizeTime(string time)
+        {
+            time = time.Trim();
+
+            // Convert 00:00:05:250 => 00:00:05.250
+            if (time.Count(c => c == ':') == 3)
+            {
+                var parts = time.Split(':'); // hh mm ss ms
+                time = $"{parts[0]}:{parts[1]}:{parts[2]}.{parts[3]}";
+            }
+
+            if (TimeSpan.TryParse(time, out var ts))
+            {
+                // Keep milliseconds always
+                return ts.ToString(@"hh\:mm\:ss\.fff");
+            }
+
+            throw new ArgumentException($"Invalid time format: {time}");
+        }
+
+
+        private bool HasMilliseconds(string time)
+        {
+            if (string.IsNullOrWhiteSpace(time))
+                return false;
+
+            return time.Contains('.') || time.Count(c => c == ':') == 3;
+        }
+
+        public async Task<string> GenerateSingleImageVideo(SimpleImageVideoRequest request)
+        {
+            if (request.Image == null)
+                throw new MediaValidationException("Image file is required.");
+
+            if (request.Duration <= 0)
+                throw new MediaValidationException("Duration must be greater than 0 seconds.");
+
+            ValidateFile(
+                request.Image,
+                AllowedImageExtensions,
+                AllowedMimeTypes["image"],
+                "Image"
+            );
+
+            var folder = GetMediaFolder();
+            string? imagePath = null;
+
+            try
+            {
+                imagePath = await SaveFileAsync(request.Image, folder);
+
+                var outputFileName = Guid.NewGuid() + ".mp4";
+                var outputPath = Path.Combine(folder, outputFileName);
+
+                await _videoGenerator.GenerateSingleImageVideoAsync(
+                    imagePath,
+                    request.Duration,
+                    outputPath
+                );
+
+                return outputFileName;
+            }
+            finally
+            {
+                SafeDelete(imagePath);
+            }
+        }
+
+        public async Task<string> LoopVideoWithAudio(AudioVideoDto request)
+        {
+            ValidateFile(request.Video, AllowedVideoExtensions, AllowedMimeTypes["video"], "Video");
+            ValidateFile(request.Audio, AllowedAudioExtensions, AllowedMimeTypes["audio"], "Audio");
+
+            var folder = GetMediaFolder();
+
+            string? videoPath = null;
+            string? audioPath = null;
+
+            try
+            {
+                videoPath = await SaveFileAsync(request.Video, folder);
+                audioPath = await SaveFileAsync(request.Audio, folder);
+
+                var outputFileName = Guid.NewGuid() + ".mp4";
+                var outputVideoPath = Path.Combine(folder, outputFileName);
+
+                await _videoGenerator.LoopVideoUntilAudioEndsAsync(
+                    videoPath,
+                    audioPath,
+                    outputVideoPath
+                );
+
+                return outputFileName;
+            }
+            finally
+            {
+                SafeDelete(videoPath);
+                SafeDelete(audioPath);
+            }
+        }
+
+        public async Task<string> ConvertMpegToMp3(FileUploadDto request)
+        {
+            ValidateFile(
+                    request.File,
+                    AllowedMpegExtensions,
+                    AllowedMimeTypes["audio"],
+                    "Audio");
+
+            var folder = GetMediaFolder();
+
+            string? inputPath = null;
+
+            try
+            {
+                inputPath = await SaveFileAsync(request.File, folder);
+
+                var outputFileName = Guid.NewGuid() + ".mp3";
+                var outputPath = Path.Combine(folder, outputFileName);
+
+                await _videoGenerator.ConvertMpegToMp3Async(inputPath, outputPath);
+
+                return outputFileName;
+            }
+            finally
+            {
+                SafeDelete(inputPath);
             }
         }
     }

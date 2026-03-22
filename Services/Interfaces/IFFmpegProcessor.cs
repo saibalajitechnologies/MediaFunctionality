@@ -3,6 +3,7 @@
     public interface IFFmpegProcessor
     {
         Task<string> RunCommand(string args);
+        Task<string> RunCommandForVideoStretch(string args);
         Task<string> RunCommandWithOutput(string args); // <--- add this
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace FunctionalitiesWebAPI.DTO
+﻿namespace FunctionalitiesWebAPI.DTO;
+
+#nullable disable
+public class SyncMultipleRequest
 {
-    public class SyncMultipleRequest
-    {
-        public IFormFile Audio { get; set; }
-        public List<IFormFile> Videos { get; set; }
-    }
+    public IFormFile Audio { get; set; }
+    public List<IFormFile> Videos { get; set; }
 }

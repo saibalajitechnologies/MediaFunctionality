@@ -1,2 +1,0 @@
-file '2. Advantage of OOP.mp4'
-file '3. Class.mp4'

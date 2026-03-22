@@ -1,8 +1,8 @@
-﻿namespace FunctionalitiesWebAPI.DTO
+﻿namespace FunctionalitiesWebAPI.DTO;
+
+#nullable disable
+public class VideoUploadRequest
 {
-    public class VideoUploadRequest
-    {
-        public IFormFile Image { get; set; }
-        public IFormFile Audio { get; set; }
-    }
+    public IFormFile Image { get; set; }
+    public IFormFile Audio { get; set; }
 }

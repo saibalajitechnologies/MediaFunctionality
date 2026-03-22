@@ -1,8 +1,8 @@
-﻿namespace FunctionalitiesWebAPI.DTO
+﻿namespace FunctionalitiesWebAPI.DTO;
+
+#nullable disable
+public class AudioSplitRequest
 {
-    public class AudioSplitRequest
-    {
-        public IFormFile Audio { get; set; }
-        public List<AudioSegmentDto> Segments { get; set; }
-    }
+    public IFormFile Audio { get; set; }
+    public List<AudioSegmentDto> Segments { get; set; }
 }

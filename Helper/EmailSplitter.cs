@@ -1,10 +1,26 @@
 ﻿using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 
 namespace FunctionalitiesWebAPI.Helper
 {
-    public class EmailSplitter
+    public partial class EmailSplitter
     {
+        [GeneratedRegex(@"<loc>(https:\/\/[^<]+?\.html)<\/loc>", RegexOptions.IgnoreCase)]
+        private static partial Regex UrlRegex();
+        //private static readonly Regex urlRegex = new Regex(@"https:\/\/[^\s]+?\.html\b",
+        //              RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        public static List<string> ExtractURLPatterns(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return new List<string>();
+
+            return UrlRegex()
+            .Matches(input)
+            .Select(m => m.Groups[1].Value)
+            .ToList();
+        }
         public static async Task readingfiles()
         {
             string inputFilePath = @"D:\Videos\Email Proof\Gmail - 50 - 50.pdf"; // Input file path

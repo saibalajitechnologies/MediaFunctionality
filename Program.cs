@@ -1,15 +1,23 @@
+﻿using FunctionalitiesWebAPI.DTO;
 using FunctionalitiesWebAPI.Helper;
 using FunctionalitiesWebAPI.Middlewares;
 using FunctionalitiesWebAPI.Processing;
 using FunctionalitiesWebAPI.Services;
 using FunctionalitiesWebAPI.Services.Interfaces;
 using Hangfire;
-using Hangfire.MemoryStorage; // Required for UseInMemoryStorage
+using Hangfire.MemoryStorage;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+// -----------------------------
+// Add Services
+// -----------------------------
+
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
@@ -22,31 +30,73 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Hangfire
 builder.Services.AddHangfire(x => x.UseMemoryStorage());
 builder.Services.AddHangfireServer();
 
+/*
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme =
+    JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme =
+    JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters =
+    new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
 
-// Increase upload limit if needed
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+    };
+});
+*/
+
+// Increase upload limit
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 500 * 1024 * 1024; // 100 MB
+    options.MultipartBodyLengthLimit = 500 * 1024 * 1024; // 500 MB
 });
 
+// MERGED Kestrel Configuration (IMPORTANT FIX)
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.Limits.MaxRequestBodySize = 500 * 1024 * 1024; // 500 MB
+    options.Limits.MaxRequestBodySize = 500 * 1024 * 1024;
+
+    options.ListenAnyIP(5284); // HTTP
+
+    options.ListenAnyIP(7219, listenOptions =>
+    {
+        listenOptions.UseHttps();
+    });
 });
 
-
+// Video services
 builder.Services.AddScoped<IAudioVideoSyncService, AudioVideoSyncService>();
 builder.Services.AddScoped<IFFmpegProcessor, FFmpegProcessor>();
-
-//builder.Services.AddScoped<IVideoGenerator, VideoGenerators>();
-
 builder.Services.AddScoped<IVideoService, VideoService>();
 builder.Services.AddScoped<IVideoGenerator, VideoGenerator>();
 
+builder.Services.AddSingleton<VideoJobStore>();
+builder.Services.AddSingleton<IVideoQueue, VideoQueue>();
+builder.Services.AddSingleton<VideoProcessingService>();
+builder.Services.AddHostedService<VideoProcessingWorker>();
 
+builder.Services.AddScoped<ITestUserService, TestUserService>();
+
+// PDF service
+builder.Services.AddSingleton<PdfService>();
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -55,49 +105,41 @@ builder.Services.AddSwaggerGen(c =>
         Title = "FunctionalitiesWebAPI",
         Version = "v1"
     });
-
-    // Force Swagger 2.0 spec (not recommended, just for troubleshooting)
-    //c.SerializeAsV2 = true;
-
-    //c.EnableAnnotations();
 });
 
 
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.ListenAnyIP(5284); // HTTP
-    serverOptions.ListenAnyIP(7219, listenOptions =>
-    {
-        listenOptions.UseHttps();
-    });
-});
+// -----------------------------
+// Build App
+// -----------------------------
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+// -----------------------------
+// Middleware Pipeline
+// -----------------------------
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage(); // Show detailed errors
-    //app.UseSwagger();
-    //app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "FunctionalitiesWebAPI v1");
     });
-
 }
-
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(); //yyyyyyyyServe video from wwwroot/media
+app.UseStaticFiles();
 
 app.UseCors("AllowAll");
 
 app.UseRouting();
 
-app.UseMiddleware<GlobalExceptionMiddleware>();
+// Keep global exception AFTER routing but BEFORE endpoints
+//app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseAuthorization();
 
